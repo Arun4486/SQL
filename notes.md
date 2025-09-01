@@ -133,3 +133,74 @@ SELECT * FROM student; -- * for all cols.
     2. INSERT
     3. SELECT
     4. DROP
+
+
+
+# Key :- 
+    are constraints that ensure the uniqueness, relationship, and integrity of data in a database table.
+     
+
+# Type of keys :-
+    1. PRIMARY KEY --> a column or set of cols that Uniquely identifies each record/row in a table. 
+                       I can not be null,
+                       only one PK per table. 
+    3. FOREIGN KEY --> Establishes a relationship between two tables.
+                       Refers to the primary key of another table.
+                       can be mupltiple FK, 
+                       can have duplicate and null values.
+                       Maintains referential integrity.
+                       REFERENTIAL INTEGRITY => It ensures that a foreign key value in one table always points to an existing primary key in another table.
+                                                Prevents orphan records (foreign keys that don’t match any primary key).
+```sql
+                        CREATE TABLE Students (
+                        student_id INT PRIMARY KEY,
+                        name VARCHAR(50)
+                        );
+
+                        CREATE TABLE Enrollments (
+                        enrollment_id INT PRIMARY KEY,
+                        student_id INT,
+                        course VARCHAR(50),
+                        FOREIGN KEY (student_id) REFERENCES Students(student_id)
+                        );
+
+``` 
+                        Enrollments.student_id must exist in Students.student_id.
+                        You cannot insert a record in Enrollments with a student_id that doesn’t exist in Students.
+
+    3. UNIQUE KEY -->   Ensures all values in a column are unique.
+                        Allows NULL values (but only one per column).
+                        A table can have multiple unique keys.
+```sql
+                        CREATE TABLE Users (
+                        user_id INT PRIMARY KEY,
+                        email VARCHAR(100) UNIQUE
+                        );
+                        -- email must be unique for each user.
+```
+    4. CANDIDATE KEY -->A column (or group of columns) that can uniquely identify a row.
+                        Every candidate key can become a primary key, but only one is chosen.
+                        If a table has both email and phone as unique, both are candidate keys.
+    
+    5. COMPOSITE KEY -->A key formed by two or more columns together to uniquely identify a record.
+```sql
+                        CREATE TABLE Enrollments (
+                        student_id INT,
+                        course_id INT,
+                        PRIMARY KEY (student_id, course_id)
+                        );
+```
+    6. ALTERNATE KEY -->Any candidate key that is not chosen as the primary key.
+                        If both email and phone can uniquely identify users, and you choose email as primary → then phone is an alternate key.
+    
+    7. SUPER KEY -->    A set of one or more columns that can uniquely identify a record.
+                        Primary key + Candidate keys + Alternate keys are all super keys.
+                        In Students(student_id, email), both {student_id}, {email}, {student_id, email} are super keys.
+
+                        Primary Key → Main unique identifier.
+                        Foreign Key → Links tables.
+                        Unique Key → Ensures uniqueness but allows null.
+                        Candidate Key → Possible primary keys.
+                        Composite Key → Multi-column primary key.
+                        Alternate Key → Candidate key not chosen.
+                        Super Key → Any unique identifier set.
