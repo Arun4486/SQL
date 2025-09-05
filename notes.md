@@ -134,7 +134,101 @@ SELECT * FROM student; -- * for all cols.
     3. SELECT
     4. DROP
 
+# Clauses :-
+        are keywords that define specific conditions, filters, or behaviors in SQL statements.
+        They modify queries and control how data is fetched, filtered, grouped, or sorted.
 
+        1. WHERE → Filters rows based on a condition.
+```sql
+                SELECT * FROM Employees
+                WHERE department = 'HR';
+```
+
+        2. ORDER BY → Sorts results in ascending (ASC, default) or descending (DESC) order.
+```sql
+                SELECT * FROM Employees
+                ORDER BY salary DESC;
+```
+
+        3. GROUP BY → Groups rows based on column values (usually with aggregate functions like COUNT, SUM).
+```sql
+                SELECT department, COUNT(*) 
+                FROM Employees
+                GROUP BY department;
+```
+
+        4. HAVING → Applies conditions to grouped records (like WHERE but for groups).
+```sql
+                SELECT department, AVG(salary) 
+                FROM Employees
+                GROUP BY department
+                HAVING AVG(salary) > 50000;
+```
+
+        5. LIMIT / TOP / FETCH → Restricts the number of rows returned.
+```sql
+                SELECT * FROM Employees
+                LIMIT 5;
+```
+
+        6. DISTINCT → Removes duplicate rows from results.
+```sql
+                SELECT DISTINCT department FROM Employees;
+```
+
+        7. JOIN Clauses → Combine rows from multiple tables.
+```sql
+                SELECT e.name, d.department_name
+                FROM Employees e
+                JOIN Departments d ON e.dept_id = d.dept_id;
+```
+        Filtering → WHERE, HAVING
+        Sorting → ORDER BY
+        Grouping → GROUP BY
+        Limiting → LIMIT / TOP
+        Removing duplicates → DISTINCT
+        Combining tables → JOIN
+
+# Aggregate Functions :-
+        Aggregate functions perform a calculation on a set of values and return a single value.
+        They are mostly used with GROUP BY and HAVING clauses.
+
+        1. COUNT() → Counts number of rows.
+```sql
+                SELECT COUNT(*) AS total_employees
+                FROM Employees;
+```
+
+        2. SUM() → Adds up values in a column.
+```sql
+                SELECT SUM(salary) AS total_salary
+                FROM Employees;
+```
+
+        3. AVG() → Returns the average of values.
+```sql
+                SELECT AVG(salary) AS average_salary
+                FROM Employees;
+```
+
+        4. MIN() → Finds the smallest value.
+```sql
+                SELECT MIN(salary) AS lowest_salary
+                FROM Employees;
+```
+
+        5. MAX() → Finds the largest value.
+```sql
+                SELECT MAX(salary) AS highest_salary
+                FROM Employees;
+```
+        Using with GROUP BY
+                Aggregate functions often pair with GROUP BY to calculate per group:
+```sql
+                SELECT department, COUNT(*) AS total_employees, AVG(salary) AS avg_salary
+                FROM Employees
+                GROUP BY department;
+```
 
 # Key :- 
     are constraints that ensure the uniqueness, relationship, and integrity of data in a database table.
@@ -204,3 +298,5 @@ SELECT * FROM student; -- * for all cols.
                         Composite Key → Multi-column primary key.
                         Alternate Key → Candidate key not chosen.
                         Super Key → Any unique identifier set.
+
+# having 
