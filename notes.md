@@ -229,6 +229,21 @@ SELECT * FROM student; -- * for all cols.
                 FROM Employees
                 GROUP BY department;
 ```
+        GENERAL ORDER OF COMMANDS --> 
+            1. SELECT 
+            2. FROM
+            3. WHERE
+            4. GROUP BY
+            5. HAVING
+            6. ORDER BY
+```SQL
+            SELECT CITY 
+            FROM STUDENTS
+            WHERE GRADE = "A"
+            GROUP BY CITY
+            HAVING MAX(MARKS) >= 93
+            ORDER BY CITY;
+```
 
 # Key :- 
     are constraints that ensure the uniqueness, relationship, and integrity of data in a database table.
@@ -291,12 +306,11 @@ SELECT * FROM student; -- * for all cols.
                         Primary key + Candidate keys + Alternate keys are all super keys.
                         In Students(student_id, email), both {student_id}, {email}, {student_id, email} are super keys.
 
-                        Primary Key → Main unique identifier.
-                        Foreign Key → Links tables.
-                        Unique Key → Ensures uniqueness but allows null.
-                        Candidate Key → Possible primary keys.
-                        Composite Key → Multi-column primary key.
-                        Alternate Key → Candidate key not chosen.
-                        Super Key → Any unique identifier set.
+    Primary Key → Main unique identifier.
+    Foreign Key → Links tables.
+    Unique Key → Ensures uniqueness but allows null.
+    Candidate Key → Possible primary keys.
+    Composite Key → Multi-column primary key.
+    Alternate Key → Candidate key not chosen.
+    Super Key → Any unique identifier set.
 
-# having 
