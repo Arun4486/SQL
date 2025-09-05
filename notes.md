@@ -314,3 +314,19 @@ SELECT * FROM student; -- * for all cols.
     Alternate Key → Candidate key not chosen.
     Super Key → Any unique identifier set.
 
+# UPDATE :-
+        is used to modify existing records in a table.
+```SQL
+        UPDATE table_name
+        SET column1 = value1,
+        column2 = value2,
+        ...
+        WHERE condition;
+```
+
+# DELETE :-
+        used to remove rows from a table.
+```SQL
+        DELETE FROM students
+        WHERE CITY = "DELHI";
+```
