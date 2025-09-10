@@ -347,24 +347,24 @@ SELECT * FROM student; -- * for all cols.
             Examples : 
                 1. Arithmetic Operators → +, -, *, /, %
 ```sql
-SELECT salary + 500 AS new_salary
-FROM employees;
+                        SELECT salary + 500 AS new_salary
+                        FROM employees;
 ```
                 2. Comparison Operators → =, != or <>, >, <, >=, <=
 ```sql
-SELECT *
-FROM employees
-WHERE salary > 30000;
+                        SELECT *
+                        FROM employees
+                        WHERE salary > 30000;
 ```
                 3. Logical Operators → AND, OR, NOT
 ```sql
-SELECT *
-FROM employees
-WHERE department = 'HR' AND salary > 25000;
+                        SELECT *
+                        FROM employees
+                        WHERE department = 'HR' AND salary > 25000;
 ```
                 4. Special Operators → BETWEEN, IN, LIKE, IS NULL
 ```sql
-SELECT *
-FROM employees
-WHERE name LIKE 'A%';
+                        SELECT *
+                        FROM employees
+                        WHERE name LIKE 'A%';
 ```  
