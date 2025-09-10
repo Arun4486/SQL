@@ -330,3 +330,41 @@ SELECT * FROM student; -- * for all cols.
         DELETE FROM students
         WHERE CITY = "DELHI";
 ```
+
+
+# OPERATORS :-
+            1. ARITHMATIC OP
+            2. LOGICAL OP --> AND, OR, NOT, IN, BETWEEN, LIKE, ALL, ANY
+```SQL
+                SELECT * FROM STUDENTS WHERE MARKS BETWEEN (80 AND 90);
+
+                SELECT * FROM STUDENTS WHERE CITY IN ("DELHI", "MUMBAI");
+
+                SELECT * FROM STUDENTS WHERE CITY NOT IN ("DELHI", "MUMBAI");
+```
+            3. BITWISE OP
+            4. COMPARISION OP
+            Examples : 
+                1. Arithmetic Operators → +, -, *, /, %
+```sql
+SELECT salary + 500 AS new_salary
+FROM employees;
+```
+                2. Comparison Operators → =, != or <>, >, <, >=, <=
+```sql
+SELECT *
+FROM employees
+WHERE salary > 30000;
+```
+                3. Logical Operators → AND, OR, NOT
+```sql
+SELECT *
+FROM employees
+WHERE department = 'HR' AND salary > 25000;
+```
+                4. Special Operators → BETWEEN, IN, LIKE, IS NULL
+```sql
+SELECT *
+FROM employees
+WHERE name LIKE 'A%';
+```  
