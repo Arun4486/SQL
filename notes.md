@@ -179,10 +179,10 @@ SELECT * FROM student; -- * for all cols.
                 ALTER TABLE Employees
                 ADD email VARCHAR(100);
 ```
-        B. Modify a column
+        B. Modify a column -- to change the datatype and constraints.
 ```SQL
                 ALTER TABLE Employees
-                MODIFY salary DECIMAL(12,2);
+                MODIFY salary VARCHAR(20);
 ```
         C. Drop a column
 ```SQL
