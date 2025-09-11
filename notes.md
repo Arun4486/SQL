@@ -176,23 +176,28 @@ SELECT * FROM student; -- * for all cols.
     4. Alter a Table --> 
         A. Add a new column
 ```SQL
-        ALTER TABLE Employees
-        ADD email VARCHAR(100);
+                ALTER TABLE Employees
+                ADD email VARCHAR(100);
 ```
         B. Modify a column
 ```SQL
-        ALTER TABLE Employees
-        MODIFY salary DECIMAL(12,2);
+                ALTER TABLE Employees
+                MODIFY salary DECIMAL(12,2);
 ```
         C. Drop a column
 ```SQL
-        ALTER TABLE Employees
-        DROP COLUMN email;
+                ALTER TABLE Employees
+                DROP COLUMN email;
 ```
-    5. Rename a Table
+        D. Rename a Table
 ```SQL    
-        ALTER TABLE Employees
-        RENAME TO Staff;
+                ALTER TABLE Employees
+                RENAME TO Staff;
+```
+        E. Rename a Column 
+```SQL
+                ALTER TABLE Employees
+                CHANGE emp_name full_name VARCHAR(50);
 ```
     6. Drop a Table --> Deletes the whole table with data.
 ```SQL
@@ -201,11 +206,6 @@ SELECT * FROM student; -- * for all cols.
     7. Truncate a Table --> Removes all rows but keeps the structure.
 ```SQL
         TRUNCATE TABLE Employees;
-```
-    8. Rename a Column (DB-specific)
-```SQL
-        ALTER TABLE Employees
-        CHANGE emp_name full_name VARCHAR(50);
 ```
 
 # Clauses :-
