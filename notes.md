@@ -1,25 +1,36 @@
-# Data :- 
-    data is a rawfact that is used to define charecterstics / attributes of an entity 
-# Database :- 
+# Data :-
+
+    data is a rawfact that is used to define charecterstics / attributes of an entity
+
+# Database :-
+
     Collection of interrealated data that is accessible digitally
-# DBMS :- 
+
+# DBMS :-
+
     s/w used to manage DB
-# types od DB : 
+
+# types od DB :
+
     1. Relational Db --> data stored in tabular formate.
         ex. mysql, postgreSQL, oracle
     2. Non-relational DB --> it stores data in more flexible ways such as documents, key-value pairs, graphs, or wide columns.
         Ex. mongoDB
+
 # SQL :-
+
     Structured Query lang. by IBM
     Programming lang. used to interact with RDB. it uses CRUD to do so
     SEQUEL --> Structured nglish Query Lang.
 
 # Table :-
-    is a collection of rows and cols, 
+
+    is a collection of rows and cols,
     Col --> general info , schema, structure, feild
     row --> individual data of an entity, tupple
 
 # Creating DB :-
+
 ```sql
 create Database db_name;
 use db_name;
@@ -33,8 +44,8 @@ show databases;
 show tables;
 ```
 
-
 # CREATING TABLE :-
+
 ```SQL
 USE db_name;
 CREATE TABLE tbl_name(
@@ -59,21 +70,23 @@ INSERT INTO STUDENT (ID, NAME, AGE) VALUES
 (02, "RAMAN", 22),
 (03, "BHUVAN", 21);
 
-SELECT * FROM student; -- * for all cols.  
+SELECT * FROM student; -- * for all cols.
 
 ```
 
 # Datatypes :-
+
     1. CHAR --> string (0-255) store string of fixed length.
         Faster for data of consistent length. Useful when all values in a column have the same size.
         Ex. phone no. country name abbr, gender abbr.
 
     2. VARCHAR --> string (0-255) string of variable length.
         slightly slower for length check, Uses only needed space.
-        Ex. Names, addresses, emails, variable text. 
+        Ex. Names, addresses, emails, variable text.
 
     3. BLOB -->  Binary Large Object
                 It is used to store large binary data like images, audio, video, PDFs, or any file in a database.
+
 ```sql
                 CREATE TABLE Photos (
                 id INT AUTO_INCREMENT PRIMARY KEY,
@@ -81,12 +94,13 @@ SELECT * FROM student; -- * for all cols.
                 image BLOB
                 );
 ```
+
                 storing in such way can make DB slow so we use reference. (links and path of a cloud storage).
-    
+
     4. INT
     5. TINYINT --> int(-128 to 127)
     6. BIGINT
-    
+
     7. FLOAT --> decimals with precision to 23 digits.
     8. DOUBLE --> decimals with precision 24 to 53 digits.
     9. BOOLEAN --> SQL doesn’t have a dedicated boolean type in all databases.Instead, most databases treat BOOLEAN as an alias for a numeric type (like TINYINT, BIT, or BOOL).
@@ -98,11 +112,12 @@ SELECT * FROM student; -- * for all cols.
     UNSIGNED --> TINYINT UNSIGNED ( 0 to 255) only +ve data like age salery etc. used to expand the range of datatype.
 
 # types of sql commands :-
+
     1. DDL --> data definition lang.
                to define or modify the structure of database objects (tables, schemas, indexes, etc.).
                EX. create, alter, drop, truncate, rename.
-    
-    2. DML --> data manipulation lang. 
+
+    2. DML --> data manipulation lang.
                Used to work with data inside tables.
                Ex. insert, update, delete.
 
@@ -113,13 +128,16 @@ SELECT * FROM student; -- * for all cols.
     4. DCL --> Data control lang.
                Used to control access and permissions.
                Ex. grant, revoke.
+
 ```sql
                GRANT SELECT, INSERT ON Students TO 'user1';
                REVOKE INSERT ON Students FROM 'user1';
 ```
+
     5. TCL --> Transaction control lang.
                Used to manage transactions (group of SQL statements executed as one unit).
                Ex. commit, rollback, savepoint.
+
 ```sql
                BEGIN;
                UPDATE Students SET age = 25 WHERE id = 1;
@@ -129,59 +147,124 @@ SELECT * FROM student; -- * for all cols.
 ```
 
 # table related queries :-
+
     1. CREATE
     2. INSERT
     3. SELECT
     4. DROP
 
+    1. Create a Table
+```SQL
+        CREATE TABLE Employees (
+        emp_id INT PRIMARY KEY,
+        emp_name VARCHAR(50) NOT NULL,
+        salary DECIMAL(10,2),
+        dept_id INT
+        );
+```
+        CREATE TABLE → makes a new table.
+
+    2. Insert Data into a Table
+```SQL
+        INSERT INTO Employees (emp_id, emp_name, salary, dept_id)
+        VALUES (1, 'Amit', 50000, 101);
+```
+    3. View Table Structure
+```SQL
+        SELECT * FROM EMP;
+```
+    4. Alter a Table --> 
+        A. Add a new column
+```SQL
+        ALTER TABLE Employees
+        ADD email VARCHAR(100);
+```
+        B. Modify a column
+```SQL
+        ALTER TABLE Employees
+        MODIFY salary DECIMAL(12,2);
+```
+        C. Drop a column
+```SQL
+        ALTER TABLE Employees
+        DROP COLUMN email;
+```
+    5. Rename a Table
+```SQL    
+        ALTER TABLE Employees
+        RENAME TO Staff;
+```
+    6. Drop a Table --> Deletes the whole table with data.
+```SQL
+        DROP TABLE Employees;
+```
+    7. Truncate a Table --> Removes all rows but keeps the structure.
+```SQL
+        TRUNCATE TABLE Employees;
+```
+    8. Rename a Column (DB-specific)
+```SQL
+        ALTER TABLE Employees
+        CHANGE emp_name full_name VARCHAR(50);
+```
+
 # Clauses :-
+
         are keywords that define specific conditions, filters, or behaviors in SQL statements.
         They modify queries and control how data is fetched, filtered, grouped, or sorted.
 
         1. WHERE → Filters rows based on a condition.
+
 ```sql
                 SELECT * FROM Employees
                 WHERE department = 'HR';
 ```
 
         2. ORDER BY → Sorts results in ascending (ASC, default) or descending (DESC) order.
+
 ```sql
                 SELECT * FROM Employees
                 ORDER BY salary DESC;
 ```
 
         3. GROUP BY → Groups rows based on column values (usually with aggregate functions like COUNT, SUM).
+
 ```sql
-                SELECT department, COUNT(*) 
+                SELECT department, COUNT(*)
                 FROM Employees
                 GROUP BY department;
 ```
 
         4. HAVING → Applies conditions to grouped records (like WHERE but for groups).
+
 ```sql
-                SELECT department, AVG(salary) 
+                SELECT department, AVG(salary)
                 FROM Employees
                 GROUP BY department
                 HAVING AVG(salary) > 50000;
 ```
 
         5. LIMIT / TOP / FETCH → Restricts the number of rows returned.
+
 ```sql
                 SELECT * FROM Employees
                 LIMIT 5;
 ```
 
         6. DISTINCT → Removes duplicate rows from results.
+
 ```sql
                 SELECT DISTINCT department FROM Employees;
 ```
 
         7. JOIN Clauses → Combine rows from multiple tables.
+
 ```sql
                 SELECT e.name, d.department_name
                 FROM Employees e
                 JOIN Departments d ON e.dept_id = d.dept_id;
 ```
+
         Filtering → WHERE, HAVING
         Sorting → ORDER BY
         Grouping → GROUP BY
@@ -190,54 +273,64 @@ SELECT * FROM student; -- * for all cols.
         Combining tables → JOIN
 
 # Aggregate Functions :-
+
         Aggregate functions perform a calculation on a set of values and return a single value.
         They are mostly used with GROUP BY and HAVING clauses.
 
         1. COUNT() → Counts number of rows.
+
 ```sql
                 SELECT COUNT(*) AS total_employees
                 FROM Employees;
 ```
 
         2. SUM() → Adds up values in a column.
+
 ```sql
                 SELECT SUM(salary) AS total_salary
                 FROM Employees;
 ```
 
         3. AVG() → Returns the average of values.
+
 ```sql
                 SELECT AVG(salary) AS average_salary
                 FROM Employees;
 ```
 
         4. MIN() → Finds the smallest value.
+
 ```sql
                 SELECT MIN(salary) AS lowest_salary
                 FROM Employees;
 ```
 
         5. MAX() → Finds the largest value.
+
 ```sql
                 SELECT MAX(salary) AS highest_salary
                 FROM Employees;
 ```
+
         Using with GROUP BY
                 Aggregate functions often pair with GROUP BY to calculate per group:
+
 ```sql
                 SELECT department, COUNT(*) AS total_employees, AVG(salary) AS avg_salary
                 FROM Employees
                 GROUP BY department;
 ```
-        GENERAL ORDER OF COMMANDS --> 
-            1. SELECT 
+
+        GENERAL ORDER OF COMMANDS -->
+            1. SELECT
             2. FROM
             3. WHERE
             4. GROUP BY
             5. HAVING
             6. ORDER BY
+
 ```SQL
-            SELECT CITY 
+            SELECT CITY
             FROM STUDENTS
             WHERE GRADE = "A"
             GROUP BY CITY
@@ -245,21 +338,23 @@ SELECT * FROM student; -- * for all cols.
             ORDER BY CITY;
 ```
 
-# Key :- 
+# Key :-
+
     are constraints that ensure the uniqueness, relationship, and integrity of data in a database table.
-     
 
 # Type of keys :-
-    1. PRIMARY KEY --> a column or set of cols that Uniquely identifies each record/row in a table. 
+
+    1. PRIMARY KEY --> a column or set of cols that Uniquely identifies each record/row in a table.
                        I can not be null,
-                       only one PK per table. 
+                       only one PK per table.
     3. FOREIGN KEY --> Establishes a relationship between two tables.
                        Refers to the primary key of another table.
-                       can be mupltiple FK, 
+                       can be mupltiple FK,
                        can have duplicate and null values.
                        Maintains referential integrity.
                        REFERENTIAL INTEGRITY => It ensures that a foreign key value in one table always points to an existing primary key in another table.
                                                 Prevents orphan records (foreign keys that don’t match any primary key).
+
 ```sql
                         CREATE TABLE Students (
                         student_id INT PRIMARY KEY,
@@ -273,13 +368,15 @@ SELECT * FROM student; -- * for all cols.
                         FOREIGN KEY (student_id) REFERENCES Students(student_id)
                         );
 
-``` 
+```
+
                         Enrollments.student_id must exist in Students.student_id.
                         You cannot insert a record in Enrollments with a student_id that doesn’t exist in Students.
 
     3. UNIQUE KEY -->   Ensures all values in a column are unique.
                         Allows NULL values (but only one per column).
                         A table can have multiple unique keys.
+
 ```sql
                         CREATE TABLE Users (
                         user_id INT PRIMARY KEY,
@@ -287,11 +384,13 @@ SELECT * FROM student; -- * for all cols.
                         );
                         -- email must be unique for each user.
 ```
+
     4. CANDIDATE KEY -->A column (or group of columns) that can uniquely identify a row.
                         Every candidate key can become a primary key, but only one is chosen.
                         If a table has both email and phone as unique, both are candidate keys.
-    
+
     5. COMPOSITE KEY -->A key formed by two or more columns together to uniquely identify a record.
+
 ```sql
                         CREATE TABLE Enrollments (
                         student_id INT,
@@ -299,9 +398,10 @@ SELECT * FROM student; -- * for all cols.
                         PRIMARY KEY (student_id, course_id)
                         );
 ```
+
     6. ALTERNATE KEY -->Any candidate key that is not chosen as the primary key.
                         If both email and phone can uniquely identify users, and you choose email as primary → then phone is an alternate key.
-    
+
     7. SUPER KEY -->    A set of one or more columns that can uniquely identify a record.
                         Primary key + Candidate keys + Alternate keys are all super keys.
                         In Students(student_id, email), both {student_id}, {email}, {student_id, email} are super keys.
@@ -315,7 +415,9 @@ SELECT * FROM student; -- * for all cols.
     Super Key → Any unique identifier set.
 
 # UPDATE :-
+
         is used to modify existing records in a table.
+
 ```SQL
         UPDATE table_name
         SET column1 = value1,
@@ -325,16 +427,19 @@ SELECT * FROM student; -- * for all cols.
 ```
 
 # DELETE :-
+
         used to remove rows from a table.
+
 ```SQL
         DELETE FROM students
         WHERE CITY = "DELHI";
 ```
 
-
 # OPERATORS :-
+
             1. ARITHMATIC OP
             2. LOGICAL OP --> AND, OR, NOT, IN, BETWEEN, LIKE, ALL, ANY
+
 ```SQL
                 SELECT * FROM STUDENTS WHERE MARKS BETWEEN (80 AND 90);
 
@@ -342,29 +447,91 @@ SELECT * FROM student; -- * for all cols.
 
                 SELECT * FROM STUDENTS WHERE CITY NOT IN ("DELHI", "MUMBAI");
 ```
+
             3. BITWISE OP
             4. COMPARISION OP
-            Examples : 
+            Examples :
                 1. Arithmetic Operators → +, -, *, /, %
+
 ```sql
                         SELECT salary + 500 AS new_salary
                         FROM employees;
 ```
+
                 2. Comparison Operators → =, != or <>, >, <, >=, <=
+
 ```sql
                         SELECT *
                         FROM employees
                         WHERE salary > 30000;
 ```
+
                 3. Logical Operators → AND, OR, NOT
+
 ```sql
                         SELECT *
                         FROM employees
                         WHERE department = 'HR' AND salary > 25000;
 ```
+
                 4. Special Operators → BETWEEN, IN, LIKE, IS NULL
+
 ```sql
                         SELECT *
                         FROM employees
                         WHERE name LIKE 'A%';
-```  
+```
+
+# Connecting two tables with FK :-
+
+```SQL
+                        CREATE TABLE DEPT (
+                        ID INT PRIMARY KEY,
+                        NAME VARCHAR(20)
+                        );
+                        INSERT INTO DEPT (ID, NAME)
+                        VALUES
+                        (101, "SCIENCE"),
+                        (102, "MATHS"),
+                        (103, "HINDI");
+                        SELECT * FROM DEPT;
+
+                        CREATE TABLE TUTOR (
+                        TUT_ID INT PRIMARY KEY,
+                        NAME VARCHAR(20),
+                        DEPT_ID INT,
+                        FOREIGN KEY (DEPT_ID) REFERENCES DEPT (ID)
+                        );
+                        INSERT INTO TUTOR (TUT_ID, NAME , DEPT_ID)
+                        VALUES
+                        (01, "ADOM", 101),
+                        (02, "BOB", 102),
+                        (03, "CASSY", 103);
+```
+                        here DEPT table is called parent table and TUTOR table is called child table
+# Cascading for FK :-
+        the changes made to the key in parent table should reflect in key in the child key.
+        1. ON DELETE CASCADE
+        2. ON UPDATE CASCADE
+```SQL
+                        CREATE TABLE TUTOR (
+                            TUT_ID INT PRIMARY KEY,
+                            NAME VARCHAR(20),
+                            DEPT_ID INT,
+                            FOREIGN KEY (DEPT_ID) REFERENCES DEPT (ID)
+                            ON DELETE CASCADE
+                            ON UPDATE CASCADE
+                            );
+                        INSERT INTO TUTOR (TUT_ID, NAME , DEPT_ID)
+                        VALUES
+                        (01, "ADOM", 101),
+                        (02, "BOB", 102),
+                        (03, "CASSY", 103);
+
+                        UPDATE DEPT
+                        SET ID = 104
+                        WHERE ID = 102;
+                        SELECT * FROM DEPT;
+
+                        SELECT * FROM TUTOR;
+```
