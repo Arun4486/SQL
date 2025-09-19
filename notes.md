@@ -536,16 +536,30 @@ SELECT * FROM student; -- * for all cols.
                         SELECT * FROM TUTOR;
 ```
 
+# Alias names -: 
+                alternate name (AS)
+```sql
+                SELECT MAX(salary) AS highest_salary
+                FROM Employees;
+```
+
 # JOINS :- 
         JOINs are used to combine rows from two or more tables based on a related column between them.
         FK is notn compulsory for joining two tables.
 
         1. INNER JOIN --> Returns only the rows that have matching values in both tables.
+                          order of writing table A, or B doesn't matter here.
 ```sql
                 SELECT employees.id, employees.name, departments.dept_name
                 FROM employees
                 INNER JOIN departments
                 ON employees.dept_id = departments.id;
+
+                -- OR 
+                SELECT * 
+                FROM employees as emp
+                INNER JOIN departments AS dept
+                ON emp.dept_id = dept.id; 
 ```
 
         2. LEFT JOIN (or LEFT OUTER JOIN) --> Returns all rows from the left table, and the matched rows from the right table. If there is no match, NULL is returned for right side.
