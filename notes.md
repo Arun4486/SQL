@@ -535,3 +535,12 @@ SELECT * FROM student; -- * for all cols.
 
                         SELECT * FROM TUTOR;
 ```
+
+# JOINS :- 
+        JOINs are used to combine rows from two or more tables based on a related column between them.
+        
+        INNER JOIN → Matching rows only.
+        LEFT JOIN → All from left + matched from right.
+        RIGHT JOIN → All from right + matched from left.
+        FULL JOIN → All rows from both sides.
+        CROSS JOIN → Every combination of rows.
