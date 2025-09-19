@@ -538,9 +538,45 @@ SELECT * FROM student; -- * for all cols.
 
 # JOINS :- 
         JOINs are used to combine rows from two or more tables based on a related column between them.
-        
+        FK is notn compulsory for joining two tables.
+
+        1. INNER JOIN --> Returns only the rows that have matching values in both tables.
+```sql
+                SELECT employees.id, employees.name, departments.dept_name
+                FROM employees
+                INNER JOIN departments
+                ON employees.dept_id = departments.id;
+```
+
+        2. LEFT JOIN (or LEFT OUTER JOIN) --> Returns all rows from the left table, and the matched rows from the right table. If there is no match, NULL is returned for right side.
+```sql
+                SELECT employees.id, employees.name, departments.dept_name
+                FROM employees
+                LEFT JOIN departments
+                ON employees.dept_id = departments.id;
+```
+        3. RIGHT JOIN (or RIGHT OUTER JOIN) --> Returns all rows from the right table, and the matched rows from the left table. If there is no match, NULL is returned for left side.
+```sql
+                SELECT employees.id, employees.name, departments.dept_name
+                FROM employees
+                RIGHT JOIN departments
+                ON employees.dept_id = departments.id;
+```
+        4. FULL OUTER JOIN --> Returns all rows when there is a match in either left or right table. If no match, NULL is returned for missing side.
+```sql 
+                SELECT employees.id, employees.name, departments.dept_name
+                FROM employees
+                FULL OUTER JOIN departments
+                ON employees.dept_id = departments.id;
+```
+        5. CROSS JOIN --> Returns the Cartesian product of both tables (every row from table A combined with every row from table B).
+```sql
+                SELECT employees.name, departments.dept_name
+                FROM employees
+                CROSS JOIN departments;
+```
         INNER JOIN → Matching rows only.
         LEFT JOIN → All from left + matched from right.
         RIGHT JOIN → All from right + matched from left.
-        FULL JOIN → All rows from both sides.
+        FULL JOIN → All rows from both sides, if a match.
         CROSS JOIN → Every combination of rows.
