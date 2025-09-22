@@ -562,7 +562,7 @@ SELECT * FROM student; -- * for all cols.
                 ON emp.dept_id = dept.id; 
 ```
 
-        2. LEFT JOIN (or LEFT OUTER JOIN) --> Returns all rows from the left table, and the matched rows from the right table. If there is no match, NULL is returned for right side.
+        2. LEFT JOIN (or LEFT OUTER JOIN) --> Returns all rows from the left table, and the matched rows from the right table. for rows where there is no match, NULL is returned for right side.
 ```sql
                 SELECT employees.id, employees.name, departments.dept_name
                 FROM employees
@@ -576,8 +576,16 @@ SELECT * FROM student; -- * for all cols.
                 RIGHT JOIN departments
                 ON employees.dept_id = departments.id;
 ```
-        4. FULL OUTER JOIN --> Returns all rows when there is a match in either left or right table. If no match, NULL is returned for missing side.
+        4. FULL OUTER JOIN --> Returns all rows when there is a match in either left or right table. If no match, NULL is returned for missing side. this is not in mysql, but in oracle and postgress, to do it in sql, use UNION.
 ```sql 
+                SELECT * FROM TEACHERS AS T
+                LEFT JOIN COURSES AS C
+                ON T.SUB = C.COURSE
+                UNION
+                SELECT * FROM TEACHERS AS T
+                RIGHT JOIN COURSES AS C
+                ON T.SUB = C.COURSE;
+                -- OR
                 SELECT employees.id, employees.name, departments.dept_name
                 FROM employees
                 FULL OUTER JOIN departments
@@ -588,9 +596,110 @@ SELECT * FROM student; -- * for all cols.
                 SELECT employees.name, departments.dept_name
                 FROM employees
                 CROSS JOIN departments;
+
+```
+
+        6. -- LEFT EXCLUSIVE JOIN --> gives only roes of table a, ignores the common rows.
+```sql
+                SELECT *
+                FROM TEACHERS T
+                LEFT JOIN COURSES C
+                ON T.SUB = C.COURSE
+                WHERE C.ID IS NULL;
+```
+        7.RIGHT EXCLUSIVE JOIN --> fives only rows of table be , ignores thee common rows.
+```sql
+                SELECT *
+                FROM TEACHERS T
+                RIGHT JOIN COURSES C
+                ON T.SUB = C.COURSE
+                WHERE T.ID IS NULL;
+```
+
+        8. FULL EXCLUSIVE JOIN --> returns the uncommon rows from both tables.
+```sql
+                SELECT * FROM TEACHERS T
+                LEFT JOIN COURSES C
+                ON T.SUB = C.COURSE
+                WHERE C.ID IS NULL
+                UNION
+                SELECT * FROM TEACHERS T
+                RIGHT JOIN COURSES C
+                ON T.SUB = C.COURSE
+                WHERE T.ID IS NULL;
 ```
         INNER JOIN → Matching rows only.
         LEFT JOIN → All from left + matched from right.
         RIGHT JOIN → All from right + matched from left.
         FULL JOIN → All rows from both sides, if a match.
         CROSS JOIN → Every combination of rows.
+
+
+# UNION :-
+        The UNION operator is used to combine the result sets of two or more SELECT statements.
+        It removes duplicates by default (like DISTINCT).
+        TO get all elements including duplicates, use UNION ALL.
+        The columns in all queries must have:
+                The same number of columns
+                The same data types (or compatible types)
+                The same order of columns
+```sql
+                SELECT column1, column2 FROM table1
+                UNION
+                SELECT column1, column2 FROM table2;
+```
+
+# SUB-QUERY :- 
+        A subquery is a query inside another query.
+                It is usually placed inside parentheses (...).
+                It can return a single value, a single row, or multiple rows.
+                It can be used in SELECT, FROM, WHERE, HAVING, etc.
+```SQL
+                SELECT * FROM MARKS
+                WHERE SCORE > (SELECT AVG(SCORE) FROM MARKS);
+```
+
+        Types --> 
+        1. Scalar Subquery (returns a single value)
+```sql        
+                SELECT name, salary
+                FROM employees
+                WHERE salary > (SELECT AVG(salary) FROM employees);
+```
+                Returns employees whose salary is above the average salary.
+
+        2. Row Subquery (returns one row)
+```sql        
+                SELECT *
+                FROM employees
+                WHERE (dept_id, salary) = (SELECT dept_id, MAX(salary) 
+                                        FROM employees GROUP BY dept_id LIMIT 1);
+```
+                Returns employee with the highest salary in a department.
+
+        3. Table Subquery (returns multiple rows / columns)
+```sql
+                SELECT name
+                FROM employees
+                WHERE dept_id IN (SELECT id FROM departments WHERE location = 'New York');
+```
+                Finds employees working in departments located in New York.
+
+        4. Subquery in FROM (Derived Table)
+```sql
+                SELECT dept_id, AVG(salary) as avg_salary
+                FROM (SELECT * FROM employees WHERE active = 1) AS active_employees
+                GROUP BY dept_id;
+```
+                Here the subquery acts like a temporary table.
+
+        5. Correlated Subquery (depends on outer query)
+```sql
+                SELECT e1.name, e1.salary
+                FROM employees e1
+                WHERE salary > (SELECT AVG(e2.salary)
+                                FROM employees e2
+                                WHERE e1.dept_id = e2.dept_id);
+```
+
+                Finds employees whose salary is above their department’s average.
