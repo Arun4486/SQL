@@ -703,3 +703,42 @@ SELECT * FROM student; -- * for all cols.
 ```
 
                 Finds employees whose salary is above their department’s average.
+
+# VIEWS :- 
+        A View is a virtual table based on a SQL query.
+        It does not store data itself — it stores the query definition.
+        When you query a view, SQL runs the underlying query and returns the result.
+        basically it is abstraaction.
+        it is used as a temp table, so that if you don't want someone to see the complete table
+        Creating a View --
+```SQL
+                CREATE VIEW EmployeeView AS
+                SELECT id, name, salary
+                FROM employees
+```
+        Using a View --> 
+```sql
+                SELECT * FROM EmployeeView;
+```
+                Works just like querying a normal table.
+
+        Updating a View --> 
+```sql
+                UPDATE EmployeeView
+                SET salary = salary + 5000
+                WHERE id = 3;
+```
+                Updates the employees table too.
+
+        But if the view contains joins, group by, or aggregations, it’s usually read-only.
+
+        Dropping a View --> 
+```sql
+                DROP VIEW EmployeeView;
+```
+        Advantages of Views --> 
+
+                Security – restrict access to certain columns/rows.
+                Simplicity – hide complex queries.
+                Reusability – write query once, use it everywhere.
+                Consistency – ensure all users see the same derived data.
