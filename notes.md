@@ -414,6 +414,19 @@ SELECT * FROM student; -- * for all cols.
     Alternate Key → Candidate key not chosen.
     Super Key → Any unique identifier set.
 
+# Auto Increament :-
+        It automatically generates a unique value for a column whenever a new row is inserted.
+        Mostly used for primary key (ID) columns.
+        Saves you from manually inserting unique IDs.
+        default value is 1.
+```sql
+        CREATE TABLE Users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(50),
+        email VARCHAR(100)
+        );
+```
+
 # UPDATE :-
 
         is used to modify existing records in a table.
