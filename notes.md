@@ -756,4 +756,4 @@ SELECT * FROM student; -- * for all cols.
                 Reusability – write query once, use it everywhere.
                 Consistency – ensure all users see the same derived data.
 
-# Date and Time :-
+# Date and Time :-  
