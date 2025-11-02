@@ -761,4 +761,41 @@ SELECT * FROM student; -- * for all cols.
                 Reusability – write query once, use it everywhere.
                 Consistency – ensure all users see the same derived data.
 
-# Date and Time :-  
+# Date and Time functions:-  
+        1. CURRENT_DATE(); 
+        2. CURRENT_TIME();
+        3. CURRENT_TIMESTAMP(); -- (COMBO)
+```SQL
+        SELECT CURRENT_DATE();
+        SELECT CURRENT_TIME();
+        SELECT CURRENT_TIMESTAMP();
+```
+
+        DATE() -> function extracts only date from a timestamp
+```sql
+SELECT DATE("2025-11-02T10:14:00+05:30");
+``` 
+2025-11-02
+
+```sql
+SELECT TIME("2025-11-02T10:14:00+05:30");
+```
+00:20:25
+
+        => YEAR(), MONTH(), DAY() FUNCTIONS EXTRACTS INDIVIDUAL VALUE FROM A DATE TIME EXPRESSION
+        ==> similarly HOUR(), MINUTE(), SECOND()
+
+        INSTEAD OF ALL THESE FUNCTION WE CAN USE 
+```SQL 
+        SELECT EXTRACT( DAY FROM "2025-11-02T10:14:00+05:30") AS DATE;
+```
+
+```SQL 
+        SELECT DATEDIFF('2025-11-20', '2025-11-16') AS DIFFERENCE; -- DATE 1 > DATE 2
+```
+        similarly TIMEDIFF()
+        DATE_ADD(), DATE_SUB()
+
+```SQL
+        SELECT DATE_ADD("2003-12-20", INTERVAL 1 MONTH) AS "MONTH ADDED";
+```
