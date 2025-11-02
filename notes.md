@@ -328,6 +328,7 @@ SELECT * FROM student; -- * for all cols.
             4. GROUP BY
             5. HAVING
             6. ORDER BY
+            7. limit
 
 ```SQL
             SELECT CITY
@@ -335,8 +336,12 @@ SELECT * FROM student; -- * for all cols.
             WHERE GRADE = "A"
             GROUP BY CITY
             HAVING MAX(MARKS) >= 93
-            ORDER BY CITY;
-```
+            ORDER BY CITY
+            limit 1;
+```     
+        when you use GROUP BY, every column in the SELECT list must either:
+        appear in the GROUP BY clause, or
+        be used inside an aggregate function (like MAX(), MIN(), COUNT(), etc.)
 
 # Key :-
 
