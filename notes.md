@@ -799,3 +799,34 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
 ```SQL
         SELECT DATE_ADD("2003-12-20", INTERVAL 1 MONTH) AS "MONTH ADDED";
 ```
+
+
+# Like Keyword :- 
+                The LIKE keyword in SQL is used to search for a pattern in a text column. It works with wildcards.
+                ✔ Examples
+                1. Names that start with 'A'
+```SQL
+                SELECT name
+                FROM Users
+                WHERE name LIKE 'A%';
+```
+                2. Names that end with 'n'
+```sql
+                SELECT name
+                FROM Employees
+                WHERE name LIKE '%n';
+```
+                3. Names that contain 'oh'
+```sql
+                SELECT name
+                FROM Customers
+                WHERE name LIKE '%oh%';
+```
+                4. Names where second letter is 'a'
+```sql
+                SELECT name
+                FROM Students
+                WHERE name LIKE '_a%';
+```
+                Case Sensitive in MySql
+
