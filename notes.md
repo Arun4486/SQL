@@ -830,3 +830,23 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
 ```
                 Case Sensitive in MySql
 
+# EXISTS Operator :-
+                The EXISTS operator is used to test for the existence of any record in a subquery.
+                Example -
+                following SQL statement returns TRUE and lists the suppliers with a product price less than 20:
+```sql
+                SELECT SupplierName
+                FROM Suppliers
+                WHERE EXISTS (SELECT ProductName FROM Products WHERE Products.SupplierID = Suppliers.supplierID AND Price < 20);
+```
+
+# SELECT INTO Statement :-
+                The SELECT INTO statement copies data from one table into a new table.
+                SELECT *
+                INTO newtable [IN externaldb]
+                FROM oldtable
+                WHERE condition;
+```sql
+                SELECT * INTO CustomersBackup2017 IN 'Backup.mdb'
+                FROM Customers;
+```
