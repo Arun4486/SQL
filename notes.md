@@ -870,3 +870,16 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
                 END AS QuantityText
                 FROM OrderDetails;
 ```
+
+# Null Functions :- 
+                used to deal with calculations where null occures
+                The MySQL IFNULL() function lets you return an alternative value if an expression is NULL:
+```sql
+                SELECT ProductName, UnitPrice * (UnitsInStock + IFNULL(UnitsOnOrder, 0))
+                FROM Products;
+```
+                or we can use the COALESCE() function, like this:
+```sql
+                SELECT ProductName, UnitPrice * (UnitsInStock + COALESCE(UnitsOnOrder, 0))
+                FROM Products;
+```
