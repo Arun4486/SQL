@@ -921,3 +921,22 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
 ```sql 
                 EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP';
 ```
+
+# Index :-
+                An index is a database object that improves the speed of data retrieval on a table column.
+                It works like a pointer that the DBMS uses to quickly locate rows.
+                Index Scan → jumps directly to matching rows → fast
+                How to create an index
+```sql
+                CREATE INDEX idx_customer_name
+                ON UIsers(email);
+
+
+                SELECT * FROM Users WHERE email = 'a@gmail.com';
+```
+                If email is not indexed, the database will perform a full table scan → checks every row → slow on large tables.
+                Disadvantages of indexing :
+                1. Slower INSERT, UPDATE, DELETE (Index needs to be updated too)
+                2. Takes additional storage (Index is stored separately)
+                3. Too many indexes can slow performance (Choose wisely)
+                Indexes are to be used strategically, not everywhere.
