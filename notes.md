@@ -940,3 +940,35 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
                 2. Takes additional storage (Index is stored separately)
                 3. Too many indexes can slow performance (Choose wisely)
                 Indexes are to be used strategically, not everywhere.
+
+# Triggers :- 
+                A Trigger is a stored program in a database that automatically executes (fires) in response to a specific event on a table or view.
+                A trigger can fire on these actions:
+                INSERT, UPDATE, DELETE
+                Types of Triggers :
+                1. BEFORE Trigger ->	Executes before the query runs (use to validate or modify data)
+                2. AFTER Trigger ->	Executes after the query runs (use to log actions or update other tables)
+                3. INSTEAD OF Trigger ->Used for views to replace an insert/update/delete
+```sql
+                CREATE OR REPLACE TRIGGER trg_user_audit
+                AFTER INSERT ON USERS
+                FOR EACH ROW
+                BEGIN
+                INSERT INTO AUDIT_LOG (USER_ID, ACTION, ACTION_TIME)
+                VALUES (:NEW.ID, 'USER_CREATED', SYSDATE);
+                END;
+```
+                Explanation:
+                Trigger fires after a row is inserted into USERS
+                Inserts a record into AUDIT_LOG table automatically
+                Disadvantages :
+                        Hard to debug (runs automatically)
+                        Can slow down performance if overused
+                        Hidden logic → other developers may not know triggers exist
+                Interview Points
+                        Trigger runs automatically — no need to call it manually
+                        Used for auditing, validation, and automation
+                Two important keywords: :NEW and :OLD for accessing values
+                Avoid putting complex logic in triggers (performance issue)
+                One-Line Definition
+                        A Trigger is an automatic piece of PL/SQL code that fires when a DML event (INSERT, UPDATE, DELETE) occurs on a table.
