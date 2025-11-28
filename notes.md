@@ -977,3 +977,12 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
 # GROUP_CONCAT :-
                 is a MySQL aggregate function that combines multiple row values into a single comma-separated string.
                 oracle equivalant is listagg(col_name, separator)
+```sql
+                SELECT
+                sell_date,
+                COUNT(*) AS num_sold,
+                GROUP_CONCAT(product ORDER BY product SEPARATOR ',') AS products
+                FROM Activities
+                GROUP BY sell_date
+                ORDER BY sell_date;
+```
