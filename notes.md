@@ -972,3 +972,8 @@ SELECT TIME("2025-11-02T10:14:00+05:30");
                 Avoid putting complex logic in triggers (performance issue)
                 One-Line Definition
                         A Trigger is an automatic piece of PL/SQL code that fires when a DML event (INSERT, UPDATE, DELETE) occurs on a table.
+
+
+# GROUP_CONCAT :-
+                is a MySQL aggregate function that combines multiple row values into a single comma-separated string.
+                oracle equivalant is listagg(col_name, separator)
